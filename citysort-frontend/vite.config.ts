@@ -11,8 +11,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '~/stitches.config': path.resolve(__dirname, '.stiches.config.js'),
+      '@': path.resolve(__dirname, './src')
     },
   },
 })
