@@ -1,0 +1,27 @@
+import { useRoutes } from 'react-router-dom';
+import CityDataTable from '@/features/misc/routes/CityDataTable';
+import { Landing } from '@/features/misc';
+
+export const AppRoutes = () => {
+  const cities = [
+    {
+      name: 'City 1',
+      parameters: [90, 75, 82, 65, 70, 88, 92, 78, 85, 80],
+    },
+    {
+      name: 'City 2',
+      parameters: [85, 80, 78, 90, 72, 85, 88, 70, 95, 82],
+    },
+    {
+      name: 'City 3',
+      parameters: [78, 88, 92, 75, 82, 90, 70, 85, 80, 78],
+    },
+  ];
+  const commonRoutes = [
+    { path: '/', element: <Landing /> },
+    { path: '/ranking', element: <CityDataTable cities={cities} /> },
+  ];
+  const element = useRoutes([...commonRoutes]);
+
+  return <>{element}</>;
+};
