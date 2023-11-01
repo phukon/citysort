@@ -35,7 +35,7 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Task" />
+      <DataTableColumnHeader column={column} title="Score" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
     enableSorting: false,
@@ -44,17 +44,17 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: 'title',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title="City" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label);
+      const label = labels.find((label) => label.value === row.original.label); //match the data with the label
 
       return (
         <div className="flex space-x-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue('title')}
           </span>
+          {label && <Badge variant="outline">{label.label}</Badge>}
         </div>
       );
     },
@@ -87,13 +87,13 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: 'priority',
+    accessorKey: 'hra',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Priority" />
+      <DataTableColumnHeader column={column} title="HRA classification" />
     ),
     cell: ({ row }) => {
       const priority = priorities.find(
-        (priority) => priority.value === row.getValue('priority')
+        (priority) => priority.value === row.getValue('hra')
       );
 
       if (!priority) {

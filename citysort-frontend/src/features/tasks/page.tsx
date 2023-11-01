@@ -14,41 +14,41 @@ type Task = {
   title: string;
   status: string;
   label: string;
-  priority: string;
+  hra: string;
 };
 
 async function getTasks(): Promise<Task[]> {
   const data = [
     {
-      id: 'TASK-9581',
+      id: '81',
       title:
-        "You can't index the port without hacking the cross-platform XSS monitor!",
+        "Jorhat",
       status: 'backlog',
-      label: 'documentation',
-      priority: 'low',
+      label: 'assam',
+      hra: 'low',
     },
     {
-      id: 'TASK-8806',
-      title: 'We need to bypass the back-end SSL panel!',
+      id: '06',
+      title: 'Kanpur',
       status: 'done',
-      label: 'bug',
-      priority: 'medium',
+      label: 'uttar-pradesh',
+      hra: 'medium',
     },
     {
-      id: 'TASK-6542',
+      id: '542',
       title:
-        'Try to quantify the RSS firewall, maybe it will quantify the open-source system!',
+        'Gangtok',
       status: 'done',
-      label: 'feature',
-      priority: 'low',
+      label: 'sikkim',
+      hra: 'low',
     },
     {
-      id: 'TASK-6806',
+      id: '06',
       title:
-        'The VGA protocol is down, reboot the back-end matrix so we can parse the CSS panel!',
+        'Kohima',
       status: 'canceled',
-      label: 'documentation',
-      priority: 'low',
+      label: 'nagaland',
+      hra: 'low',
     },
   ];
 
@@ -74,7 +74,7 @@ export default function TaskPage() {
 
   return (
     <>
-      <div className="md:hidden">
+      {/* <div className="md:hidden">
         <img
           src={im1}
           width={1280}
@@ -89,13 +89,13 @@ export default function TaskPage() {
           alt="Playground"
           className="hidden dark:block"
         />
-      </div>
+      </div> */}
       <div className="h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
+            <h2 className="text-2xl font-bold tracking-tight">India</h2>
             <p className="text-muted-foreground">
-              Here&apos;s a list of your tasks for this month!
+              Here&apos;s a list of cities so far!
             </p>
           </div>
           <div className="flex items-center space-x-2">
