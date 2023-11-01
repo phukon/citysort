@@ -3,6 +3,7 @@ import CityDataTable from '@/features/misc/routes/CityDataTable';
 import { Landing } from '@/features/misc';
 import DemoPage from '@/features/payments/page';
 import TaskPage from '@/features/tasks/page';
+import DashboardPage from '@/features/dashboard/page';
 
 export const AppRoutes = () => {
   const cities = [
@@ -25,6 +26,7 @@ export const AppRoutes = () => {
     { path: '/ranking', element: <CityDataTable cities={cities} /> },
     { path: '/table', element: <DemoPage /> },
     { path: '/tasks', element: <TaskPage /> },
+    { path: '/dashboard', element: <DashboardPage /> },
   ];
   const element = useRoutes([...commonRoutes]);
 
