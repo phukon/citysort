@@ -7,7 +7,7 @@ import { DataTable } from './components/data-table';
 // import { UserNav } from './components/user-nav';
 import { taskSchema } from './data/schema';
 // import im1 from '@/assets/im1.jpg';
-
+import Form from '../form/Form';
 
 type Task = {
   id: string;
@@ -94,8 +94,8 @@ export default function TaskPage() {
           className="hidden dark:block"
         />
       </div> */}
-      <div className="h-full flex-1 flex-col space-y-8 p-8 md:flex">
-        <div className="flex items-center justify-between space-y-2">
+      <div className="h-full flex-1 flex-col space-y-8 p-2 md:p-16 justify-center md:flex">
+        <div className="flex items-center justify-between space-y-2 max-[600px]:p-5">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">India</h2>
             <p className="text-muted-foreground">
@@ -107,6 +107,9 @@ export default function TaskPage() {
           </div> */}
         </div>
         <DataTable data={tasks} columns={columns} />
+        <div className="p-3 md:p-16">
+          <Form />
+        </div>
       </div>
     </>
   );
