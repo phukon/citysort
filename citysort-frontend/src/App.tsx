@@ -7,6 +7,6 @@ function App() {
       <AppRoutes />
     </AppProvider>
   );
-}
+} 
 
 export default App;
