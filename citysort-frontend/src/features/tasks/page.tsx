@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { useEffect, useState } from 'react';
 import { columns } from './components/columns';
 import { DataTable } from './components/data-table';
-import { UserNav } from './components/user-nav';
+// import { UserNav } from './components/user-nav';
 import { taskSchema } from './data/schema';
 // import im1 from '@/assets/im1.jpg';
 
@@ -21,8 +21,7 @@ async function getTasks(): Promise<Task[]> {
   const data = [
     {
       id: '81',
-      title:
-        "Jorhat",
+      title: 'Jorhat',
       status: 'backlog',
       label: 'assam',
       hra: 'low',
@@ -36,16 +35,21 @@ async function getTasks(): Promise<Task[]> {
     },
     {
       id: '542',
-      title:
-        'Gangtok',
+      title: 'Gangtok',
       status: 'done',
       label: 'sikkim',
       hra: 'low',
     },
     {
+      id: '542',
+      title: 'Mumbai',
+      status: 'done',
+      label: 'maharashtra',
+      hra: 'high',
+    },
+    {
       id: '06',
-      title:
-        'Kohima',
+      title: 'Kohima',
       status: 'canceled',
       label: 'nagaland',
       hra: 'low',
@@ -98,9 +102,9 @@ export default function TaskPage() {
               Here&apos;s a list of cities so far!
             </p>
           </div>
-          <div className="flex items-center space-x-2">
+          {/* <div className="flex items-center space-x-2">
             <UserNav />
-          </div>
+          </div> */}
         </div>
         <DataTable data={tasks} columns={columns} />
       </div>

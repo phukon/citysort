@@ -1,4 +1,6 @@
 'use client';
+// Add or edit columns here
+
 
 import { ColumnDef } from '@tanstack/react-table';
 
@@ -8,7 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { labels, priorities, statuses } from '../data/data';
 import { Task } from '../data/schema';
 import { DataTableColumnHeader } from './data-table-column-header';
-import { DataTableRowActions } from './data-table-row-actions';
+// import { DataTableRowActions } from './data-table-row-actions';
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -100,12 +102,21 @@ export const columns: ColumnDef<Task>[] = [
         return null;
       }
 
+      let color = '';
+      if (priority.value === 'low') {
+        color = 'red';
+      } else if (priority.value === 'medium') {
+        color = 'blue';
+      } else if (priority.value === 'high') {
+        color = 'green';
+      }
+
       return (
         <div className="flex items-center">
           {priority.icon && (
             <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           )}
-          <span>{priority.label}</span>
+          <span style={{ color }}>{priority.label}</span>
         </div>
       );
     },
@@ -113,8 +124,8 @@ export const columns: ColumnDef<Task>[] = [
       return value.includes(row.getValue(id));
     },
   },
-  {
-    id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
-  },
+  // {
+  //   id: 'actions',
+  //   cell: ({ row }) => <DataTableRowActions row={row} />,
+  // },
 ];
