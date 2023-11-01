@@ -6,7 +6,7 @@ import { columns } from './components/columns';
 import { DataTable } from './components/data-table';
 import { UserNav } from './components/user-nav';
 import { taskSchema } from './data/schema';
-import im1 from '@/assets/im1.jpg';
+// import im1 from '@/assets/im1.jpg';
 
 
 type Task = {
