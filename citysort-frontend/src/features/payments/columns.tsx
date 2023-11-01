@@ -24,14 +24,14 @@ export type Payment = {
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
+    // id: 'select',
+    // header: ({ table }) => (
+    //   <Checkbox
+    //     checked={table.getIsAllPageRowsSelected()}
+    //     onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+    //     aria-label="Select all"
+    //   />
+    // ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}

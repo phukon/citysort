@@ -1,5 +1,5 @@
 'use client';
-
+import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
 import {
   ColumnDef,
@@ -28,12 +28,16 @@ import {
 import { DataTablePagination } from '../components/data-table-pagination';
 import { DataTableToolbar } from '../components/data-table-toolbar';
 
-interface DataTableProps<TData, TValue> {
+interface MyData {
+  title: string;
+}
+
+interface DataTableProps<TData extends MyData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends MyData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -67,6 +71,11 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
+  const navigate = useNavigate();
+   const handleRowClick = (id: string) => {
+     navigate(`/${id}`);
+   };
+
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
@@ -95,8 +104,10 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
+                  onClick={() => handleRowClick(row.original.title)}
+                  style={{ cursor: 'pointer' }}
                   data-state={row.getIsSelected() && 'selected'}
-                >
+                > 
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
