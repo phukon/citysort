@@ -62,13 +62,13 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: 'status',
+    accessorKey: 'profile',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="City Profile" />
     ),
     cell: ({ row }) => {
       const status = statuses.find(
-        (status) => status.value === row.getValue('status')
+        (status) => status.value === row.getValue('profile')
       );
 
       if (!status) {
@@ -77,9 +77,9 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className="flex w-[100px] items-center">
-          {status.icon && (
+          {/* {status.icon && (
             <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          )} */}
           <span>{status.label}</span>
         </div>
       );

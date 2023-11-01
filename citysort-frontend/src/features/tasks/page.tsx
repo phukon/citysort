@@ -12,7 +12,7 @@ import { taskSchema } from './data/schema';
 type Task = {
   id: string;
   title: string;
-  status: string;
+  profile: string;
   label: string;
   hra: string;
 };
@@ -22,35 +22,35 @@ async function getTasks(): Promise<Task[]> {
     {
       id: '81',
       title: 'Jorhat',
-      status: 'backlog',
+      profile: 'tourist',
       label: 'assam',
       hra: 'low',
     },
     {
       id: '06',
       title: 'Kanpur',
-      status: 'done',
+      profile: 'rh',
       label: 'uttar-pradesh',
       hra: 'medium',
     },
     {
       id: '542',
       title: 'Gangtok',
-      status: 'done',
+      profile: 'nature',
       label: 'sikkim',
       hra: 'low',
     },
     {
       id: '542',
       title: 'Mumbai',
-      status: 'done',
+      profile: 'budget',
       label: 'maharashtra',
       hra: 'high',
     },
     {
       id: '06',
       title: 'Kohima',
-      status: 'canceled',
+      profile: 'clean',
       label: 'nagaland',
       hra: 'low',
     },
