@@ -22,11 +22,11 @@ export const AppRoutes = () => {
   ];
 
   const commonRoutes = [
-    { path: '/', element: <Landing /> },
+    { path: '/', element: <TaskPage /> },
+    { path: '/about', element: <Landing /> },
     { path: '/ranking', element: <CityDataTable cities={cities} /> },
     { path: '/table', element: <DemoPage /> },
-    { path: '/tasks', element: <TaskPage /> },
-    { path: '/dashboard', element: <DashboardPage /> },
+    { path: '/stats/:city', element: <DashboardPage /> },
   ];
   const element = useRoutes([...commonRoutes]);
 

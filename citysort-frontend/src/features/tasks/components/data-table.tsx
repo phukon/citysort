@@ -73,13 +73,13 @@ export function DataTable<TData extends MyData, TValue>({
 
   const navigate = useNavigate();
    const handleRowClick = (id: string) => {
-     navigate(`/${id}`);
+     navigate(`/stats/${id}`);
    };
 
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className="rounded-md border">
+      <div className="rounded-md border-2">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
