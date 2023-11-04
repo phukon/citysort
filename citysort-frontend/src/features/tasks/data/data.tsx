@@ -112,17 +112,17 @@ export const statuses = [
 export const priorities = [
   {
     label: 'Z (Tier-3)',
-    value: 'low',
+    value: 't3',
     icon: ArrowDownIcon,
   },
   {
     label: 'Y (Tier-2)',
-    value: 'medium',
+    value: 't2',
     icon: ArrowRightIcon,
   },
   {
     label: 'X (Tier-1)',
-    value: 'high',
+    value: 't1',
     icon: ArrowUpIcon,
   },
 ];

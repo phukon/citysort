@@ -24,20 +24,22 @@ export default function DashboardPage() {
   const { id } = useParams();
 
   const [cityData, setCityData] = useState<any | null>(null);
+  const [statsData, setStatsData] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchCityRecord = async () => {
       try {
-        const record = await pb.collection('citysort').getOne(`${id}`);
+        const records = await pb.collection('citysort').getOne(`${id}`);
 
-        if (record) {
-          const cityDataRecord = await pb
-            .collection('city_data')
-            .getOne(`${record.stats}`);
+        if (records) {
+          const stats = await pb.collection(`${records.title}`).getFullList({
+            sort: '-created',
+          });
+          setCityData(records);
 
-          if (cityDataRecord) {
-            setCityData(cityDataRecord);
-            console.log('City data:', cityData);
+          if (stats) {
+            setStatsData(stats)
+            console.log('City data:', stats);
           } else {
             console.log('No city data found for this city ID');
           }
@@ -192,7 +194,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">
-                      {cityData?.weather.weather}℃
+                      {cityData?.weather.temperature}℃
                     </div>
                     <p className="text-xs text-muted-foreground">
                       {cityData?.weather.climate}
