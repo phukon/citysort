@@ -72,8 +72,8 @@ export function DataTable<TData extends MyData, TValue>({
   });
 
   const navigate = useNavigate();
-   const handleRowClick = (id: string) => {
-     navigate(`/stats/${id}`);
+   const handleRowClick = (row: any) => {
+     navigate(`/stats/${row.original.id}`);
    };
 
   return (
@@ -104,7 +104,7 @@ export function DataTable<TData extends MyData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  onClick={() => handleRowClick(row.original.title)}
+                  onClick={() => handleRowClick(row)}
                   style={{ cursor: 'pointer' }}
                   data-state={row.getIsSelected() && 'selected'}
                 > 

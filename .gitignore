@@ -13,6 +13,9 @@ dist
 dist-ssr
 *.local
 
+citysort-frontend/.env
+citysort-backend/.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

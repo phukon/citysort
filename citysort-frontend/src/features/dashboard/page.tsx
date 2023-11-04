@@ -4,16 +4,14 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
+} from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { RecentSales } from '@/features/dashboard/components/recent-sales';
+import { Attractions } from '@/features/dashboard/components/attractions';
 import { RadarOverview } from './components/RadarOverview';
+import pb from '@/lib/pocketbase';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 // import { Button } from "@/components/ui/button"
 // import { CalendarDateRangePicker } from "@/features/dashboard/components/date-range-picker"
@@ -23,6 +21,37 @@ import { RadarOverview } from './components/RadarOverview';
 // import { UserNav } from '@/features/dashboard/components/user-nav';
 
 export default function DashboardPage() {
+  const { id } = useParams();
+
+  const [cityData, setCityData] = useState<any | null>(null);
+
+  useEffect(() => {
+    const fetchCityRecord = async () => {
+      try {
+        const record = await pb.collection('citysort').getOne(`${id}`);
+
+        if (record) {
+          const cityDataRecord = await pb
+            .collection('city_data')
+            .getOne(`${record.stats}`);
+
+          if (cityDataRecord) {
+            setCityData(cityDataRecord);
+            console.log('City data:', cityData);
+          } else {
+            console.log('No city data found for this city ID');
+          }
+        } else {
+          console.log(`No record found with title '${id}'`);
+        }
+      } catch (error) {
+        console.error('Error fetching record:', error);
+      }
+    };
+
+    fetchCityRecord();
+  }, [id]);
+
   return (
     <>
       <div className="flex-col md:flex">
@@ -74,7 +103,9 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">45,231</div>
+                    <div className="text-2xl font-bold">
+                      {cityData?.population}
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       20.1% of the State
                     </p>
@@ -99,9 +130,11 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">123 Mbps</div>
+                    <div className="text-2xl font-bold">
+                      {cityData?.internet_speed} Mbps
+                    </div>
                     <p className="text-xs text-muted-foreground">
-                      Ranked 126th in the country
+                      Ranked Xth among CS™ cities.
                     </p>
                   </CardContent>
                 </Card>
@@ -126,7 +159,12 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">Assamese</div>
+                    <div className="text-2xl font-bold">
+                      {cityData?.language
+                        ? cityData.language.charAt(0).toUpperCase() +
+                          cityData.language.slice(1)
+                        : ''}
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       89% of the Population
                     </p>
@@ -135,25 +173,29 @@ export default function DashboardPage() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Active Now
+                      Weather
                     </CardTitle>
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
                       fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                      <path
+                        d="M7.5 0C7.77614 0 8 0.223858 8 0.5V2.5C8 2.77614 7.77614 3 7.5 3C7.22386 3 7 2.77614 7 2.5V0.5C7 0.223858 7.22386 0 7.5 0ZM2.1967 2.1967C2.39196 2.00144 2.70854 2.00144 2.90381 2.1967L4.31802 3.61091C4.51328 3.80617 4.51328 4.12276 4.31802 4.31802C4.12276 4.51328 3.80617 4.51328 3.61091 4.31802L2.1967 2.90381C2.00144 2.70854 2.00144 2.39196 2.1967 2.1967ZM0.5 7C0.223858 7 0 7.22386 0 7.5C0 7.77614 0.223858 8 0.5 8H2.5C2.77614 8 3 7.77614 3 7.5C3 7.22386 2.77614 7 2.5 7H0.5ZM2.1967 12.8033C2.00144 12.608 2.00144 12.2915 2.1967 12.0962L3.61091 10.682C3.80617 10.4867 4.12276 10.4867 4.31802 10.682C4.51328 10.8772 4.51328 11.1938 4.31802 11.3891L2.90381 12.8033C2.70854 12.9986 2.39196 12.9986 2.1967 12.8033ZM12.5 7C12.2239 7 12 7.22386 12 7.5C12 7.77614 12.2239 8 12.5 8H14.5C14.7761 8 15 7.77614 15 7.5C15 7.22386 14.7761 7 14.5 7H12.5ZM10.682 4.31802C10.4867 4.12276 10.4867 3.80617 10.682 3.61091L12.0962 2.1967C12.2915 2.00144 12.608 2.00144 12.8033 2.1967C12.9986 2.39196 12.9986 2.70854 12.8033 2.90381L11.3891 4.31802C11.1938 4.51328 10.8772 4.51328 10.682 4.31802ZM8 12.5C8 12.2239 7.77614 12 7.5 12C7.22386 12 7 12.2239 7 12.5V14.5C7 14.7761 7.22386 15 7.5 15C7.77614 15 8 14.7761 8 14.5V12.5ZM10.682 10.682C10.8772 10.4867 11.1938 10.4867 11.3891 10.682L12.8033 12.0962C12.9986 12.2915 12.9986 12.608 12.8033 12.8033C12.608 12.9986 12.2915 12.9986 12.0962 12.8033L10.682 11.3891C10.4867 11.1938 10.4867 10.8772 10.682 10.682ZM5.5 7.5C5.5 6.39543 6.39543 5.5 7.5 5.5C8.60457 5.5 9.5 6.39543 9.5 7.5C9.5 8.60457 8.60457 9.5 7.5 9.5C6.39543 9.5 5.5 8.60457 5.5 7.5ZM7.5 4.5C5.84315 4.5 4.5 5.84315 4.5 7.5C4.5 9.15685 5.84315 10.5 7.5 10.5C9.15685 10.5 10.5 9.15685 10.5 7.5C10.5 5.84315 9.15685 4.5 7.5 4.5Z"
+                        fill="currentColor"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                      ></path>
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
+                    <div className="text-2xl font-bold">
+                      {cityData?.weather.weather}℃
+                    </div>
                     <p className="text-xs text-muted-foreground">
-                      +201 since last hour
+                      {cityData?.weather.climate}
                     </p>
                   </CardContent>
                 </Card>
@@ -169,13 +211,13 @@ export default function DashboardPage() {
                 </Card>
                 <Card className="col-span-3">
                   <CardHeader>
-                    <CardTitle>Recent Sales</CardTitle>
+                    <CardTitle>Attractions</CardTitle>
                     <CardDescription>
-                      You made 265 sales this month.
+                      The city's top attractions
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <RecentSales />
+                    <Attractions data={cityData?.attractions} />
                   </CardContent>
                 </Card>
               </div>

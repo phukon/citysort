@@ -35,11 +35,11 @@ export const columns: ColumnDef<Task>[] = [
   //   enableHiding: false,
   // },
   {
-    accessorKey: 'id',
+    accessorKey: 'score',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Score" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue('score')}</div>,
     enableSorting: false,
     enableHiding: false,
   },

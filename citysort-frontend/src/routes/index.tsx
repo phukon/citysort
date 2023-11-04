@@ -26,7 +26,7 @@ export const AppRoutes = () => {
     { path: '/about', element: <Landing /> },
     { path: '/ranking', element: <CityDataTable cities={cities} /> },
     { path: '/table', element: <DemoPage /> },
-    { path: '/stats/:city', element: <DashboardPage /> },
+    { path: '/stats/:id', element: <DashboardPage /> },
   ];
   const element = useRoutes([...commonRoutes]);
 

@@ -11,6 +11,7 @@ import Form from '../form/Form';
 
 type Task = {
   id: string;
+  score: number;
   title: string;
   profile: string;
   label: string;
@@ -20,7 +21,8 @@ type Task = {
 async function getTasks(): Promise<Task[]> {
   const data = [
     {
-      id: '81',
+      id: 'tm2v8e1jtvnqq8h',
+      score: 5,
       title: 'Jorhat',
       profile: 'tourist',
       label: 'assam',
@@ -28,6 +30,7 @@ async function getTasks(): Promise<Task[]> {
     },
     {
       id: '06',
+      score: 5,
       title: 'Kanpur',
       profile: 'rh',
       label: 'uttar-pradesh',
@@ -35,13 +38,15 @@ async function getTasks(): Promise<Task[]> {
     },
     {
       id: '542',
+      score: 5,
       title: 'Gangtok',
       profile: 'nature',
       label: 'sikkim',
       hra: 'low',
     },
     {
-      id: '542',
+      id: '0ja5j5kqh5icsfv',
+      score: 5,
       title: 'Mumbai',
       profile: 'budget',
       label: 'maharashtra',
@@ -49,6 +54,7 @@ async function getTasks(): Promise<Task[]> {
     },
     {
       id: '06',
+      score: 5,
       title: 'Kohima',
       profile: 'clean',
       label: 'nagaland',

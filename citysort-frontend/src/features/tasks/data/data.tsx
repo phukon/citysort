@@ -79,6 +79,34 @@ export const statuses = [
     label: 'Clean✨',
     // icon: CrossCircledIcon,
   },
+  {
+    value: 'kanpur',
+    label: 'Kanpur City 🏙️',
+  },
+  {
+    value: 'historic',
+    label: 'Historic Sites 🏛️',
+  },
+  {
+    value: 'nightlife',
+    label: 'Vibrant Nightlife 🌃',
+  },
+  {
+    value: 'arts',
+    label: 'Arts and Culture 🎨',
+  },
+  {
+    value: 'sporty',
+    label: 'Sporty and Athletic 🏅',
+  },
+  {
+    value: 'educational',
+    label: 'Education Hub 📚',
+  },
+  {
+    value: 'foodie',
+    label: 'Foodie Paradise 🍽️',
+  },
 ];
 
 export const priorities = [
