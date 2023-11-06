@@ -6,14 +6,15 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 import { Attractions } from '@/features/dashboard/components/attractions';
 import { RadarOverview } from './components/RadarOverview';
 import pb from '@/lib/pocketbase';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { set } from 'date-fns';
+import { AlertDialogDash } from './components/alert';
+import { AlertDialogDash2 } from './components/alert2';
 
+// import { set } from 'date-fns';
 // import { Button } from '@/components/ui/button';
 // import { CalendarDateRangePicker } from '@/features/dashboard/components/date-range-picker';
 // import { MainNav } from '@/features/dashboard/components/main-nav';
@@ -136,7 +137,7 @@ export default function DashboardPage() {
                       {cityData?.population}
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      20.1% of the State
+                      X.XX% of the State <AlertDialogDash />
                     </p>
                   </CardContent>
                 </Card>
@@ -163,7 +164,7 @@ export default function DashboardPage() {
                       {cityData?.internet_speed} Mbps
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Ranked Xth among CS™ cities.
+                      Ranked Xth among CS™ cities. <AlertDialogDash />
                     </p>
                   </CardContent>
                 </Card>
@@ -195,7 +196,7 @@ export default function DashboardPage() {
                         : ''}
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      89% of the Population
+                      89% of the Population <AlertDialogDash />
                     </p>
                   </CardContent>
                 </Card>
@@ -224,7 +225,7 @@ export default function DashboardPage() {
                       {statsData?.weather?.temperature || ''}℃
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      {cityData?.weather?.climate}
+                      {cityData?.weather?.climate} <AlertDialogDash />
                     </p>
                   </CardContent>
                 </Card>
@@ -233,6 +234,7 @@ export default function DashboardPage() {
                 <Card className="col-span-4 hide-on-small">
                   <CardHeader>
                     <CardTitle>Overview</CardTitle>
+                    <AlertDialogDash2/>
                   </CardHeader>
                   <CardContent className="pl-2">
                     <RadarOverview data={surveyData} />
