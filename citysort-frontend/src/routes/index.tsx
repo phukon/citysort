@@ -5,6 +5,7 @@ import DemoPage from '@/features/payments/page';
 import TaskPage from '@/features/tasks/page';
 import DashboardPage from '@/features/dashboard/page';
 import { MainNav } from '@/features/dashboard/components/main-nav';
+import Disclaimer from '@/features/disclaimer/Disclaimer';
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ export const AppRoutes = () => {
         { path: '/ranking', element: <CityDataTable cities={cities} /> },
         { path: '/stats/:id', element: <DashboardPage /> },
         { path: '/table', element: <DemoPage /> },
+        { path: '/disclaimer', element: <Disclaimer /> },
       ],
     },
   ];
