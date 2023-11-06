@@ -81,7 +81,7 @@ export default function TaskPage() {
       setTimeout(() => {
         console.log('Resuming handleScroll events!');
         setCanToast(true);
-      }, 1000 * 30 * 3);
+      }, 1000 * 60);
     }
 
     // if (canGuide && scrollPosition > 406 && screenWidth > 300)
@@ -138,11 +138,6 @@ export default function TaskPage() {
         ) : (
           <DataTable data={tasks} columns={columns} />
         )}
-        <div>
-          <p>
-            Scroll position: {scrollPosition} width: {screenWidth}
-          </p>
-        </div>
         <div className="p-3 md:p-16">
           <Form />
         </div>
