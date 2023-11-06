@@ -8,32 +8,26 @@ interface MainNavProps extends React.HTMLAttributes<HTMLElement> {
 export const MainNav: React.FC<MainNavProps> = ({ className, ...props }) => {
   return (
     <nav
-      className={`flex items-center space-x-4 lg:space-x-6 ${className}`}
+      className={`flex items-center space-x-6 lg:space-x-6 ${className}`}
       {...props}
     >
       <Link
-        to="/examples/dashboard"
+        to="/"
         className="text-sm font-medium transition-colors hover:text-primary"
       >
-        Overview
+        Home
       </Link>
       <Link
-        to="/examples/dashboard"
+        to="/about"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
-        Customers
+        About
       </Link>
       <Link
-        to="/examples/dashboard"
+        to="/disclaimer"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
-        Products
-      </Link>
-      <Link
-        to="/examples/dashboard"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Settings
+        Disclaimer
       </Link>
     </nav>
   );

@@ -4,8 +4,8 @@ import * as React from 'react';
 import { Spinner } from '@/components/Elements/Spinner';
 
 const variants = {
-  primary: 'bg-blue-600 text-white',
-  inverse: 'bg-white text-blue-600',
+  primary: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+  inverse: 'bg-white',
   danger: 'bg-red-600 text-white',
 };
 

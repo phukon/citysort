@@ -1,9 +1,21 @@
-import { useRoutes } from 'react-router-dom';
+import { useRoutes, Outlet } from 'react-router-dom';
 import CityDataTable from '@/features/misc/routes/CityDataTable';
 import { Landing } from '@/features/misc';
 import DemoPage from '@/features/payments/page';
 import TaskPage from '@/features/tasks/page';
 import DashboardPage from '@/features/dashboard/page';
+import { MainNav } from '@/features/dashboard/components/main-nav';
+
+const App = () => {
+  return (
+    <>
+      <div className="flex h-16 items-center pr-10 pl-7 md:pl-16 lg:pl-16 border-b">
+        <MainNav />
+      </div>
+      <Outlet />
+    </>
+  );
+};
 
 export const AppRoutes = () => {
   const cities = [
@@ -22,11 +34,17 @@ export const AppRoutes = () => {
   ];
 
   const commonRoutes = [
-    { path: '/', element: <TaskPage /> },
-    { path: '/about', element: <Landing /> },
-    { path: '/ranking', element: <CityDataTable cities={cities} /> },
-    { path: '/table', element: <DemoPage /> },
-    { path: '/stats/:id', element: <DashboardPage /> },
+    {
+      path: '/',
+      element: <App />,
+      children: [
+        { path: '/', element: <TaskPage /> },
+        { path: '/about', element: <Landing /> },
+        { path: '/ranking', element: <CityDataTable cities={cities} /> },
+        { path: '/stats/:id', element: <DashboardPage /> },
+        { path: '/table', element: <DemoPage /> },
+      ],
+    },
   ];
   const element = useRoutes([...commonRoutes]);
 

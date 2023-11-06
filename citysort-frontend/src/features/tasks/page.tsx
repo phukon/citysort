@@ -54,20 +54,27 @@ async function getData(): Promise<Task[]> {
 
 export default function TaskPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getData();
         setTasks(data);
+        setLoading(false); // Set loading state to false after data is fetched
       } catch (error) {
-        // Handle errors
-        console.error('Error fetching tasks:', error);
+        setError('Error fetching tasks'); // Set error state if fetching data fails
+        setLoading(false); // Set loading state to false due to the error
       }
     };
 
     fetchData();
   }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>; // Error state UI
+  }
 
   return (
     <>
@@ -99,7 +106,15 @@ export default function TaskPage() {
             <UserNav />
           </div> */}
         </div>
-        <DataTable data={tasks} columns={columns} />
+        {loading ? (
+          <div className="flex items-center justify-center">
+            <div className="text-4xl font-bold text-gray-700">
+              Loading...
+            </div>
+          </div>
+        ) : (
+          <DataTable data={tasks} columns={columns} />
+        )}
         <div className="p-3 md:p-16">
           <Form />
         </div>
