@@ -57,7 +57,7 @@ export const Landing = () => {
                     </svg>
                   }
                 >
-                  Github Repo
+                  Github
                 </Button>
               </a>
             </div>

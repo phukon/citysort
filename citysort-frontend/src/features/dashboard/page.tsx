@@ -197,7 +197,7 @@ export default function DashboardPage() {
                         : ''}
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      89% of the Population <AlertDialogDash />
+                      X.XX% of the Population <AlertDialogDash />
                     </p>
                   </CardContent>
                 </Card>

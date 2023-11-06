@@ -5,6 +5,7 @@ import { DataTable } from './components/data-table';
 // import { UserNav } from './components/user-nav';
 import { taskSchema } from './data/schema';
 import Form from '../form/Form';
+import { notify, guide } from './components/formInfo';
 
 type Task = {
   collectionId: string;
@@ -32,7 +33,6 @@ async function getData(): Promise<Task[]> {
       throw new Error('Failed to fetch data');
     }
     const data = await response.json();
-    console.log(data);
 
     const capitalizedData = data.items.map((task: Task) => {
       const capitalizedTitle =
@@ -57,6 +57,43 @@ export default function TaskPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [canToast, setCanToast] = useState(true);
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  const handleResize = () => {
+    const width = window.innerWidth;
+    setScreenWidth(width);
+  };
+
+  useEffect(() => {
+    if (canToast && scrollPosition > 300 && screenWidth > 300) {
+      // Trigger an event or function when conditions are met
+      console.log('Toast!');
+      notify();
+      setCanToast(false);
+
+      setTimeout(() => {
+        console.log('Resuming handleScroll events!');
+        setCanToast(true);
+      }, 1000);
+    }
+
+    // if (canGuide && scrollPosition > 406 && screenWidth > 300)
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [scrollPosition, screenWidth]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,28 +110,16 @@ export default function TaskPage() {
   }, []);
 
   if (error) {
-    return <div>Error: {error}</div>; // Error state UI
+    console.log(error);
   }
+
+  useEffect(() => {
+    setTimeout(() => { guide();}, 3000)
+  }, []);
 
   return (
     <>
-      {/* <div className="md:hidden">
-        <img
-          src={im1}
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="block dark:hidden"
-        />
-        <img
-          src={im1}
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="hidden dark:block"
-        />
-      </div> */}
-      <div className="h-full flex-1 flex-col space-y-8 p-2 md:p-16 justify-center md:flex">
+      <div className="h-full flex-1 flex-col space-y-8 p-2 md:p-10 justify-center md:flex">
         <div className="flex items-center justify-between space-y-2 max-[600px]:p-5">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">India</h2>
@@ -108,13 +133,16 @@ export default function TaskPage() {
         </div>
         {loading ? (
           <div className="flex items-center justify-center">
-            <div className="text-4xl font-bold text-gray-700">
-              Loading...
-            </div>
+            <div className="text-4xl font-bold text-gray-700">Loading...</div>
           </div>
         ) : (
           <DataTable data={tasks} columns={columns} />
         )}
+        <div>
+          <p>
+            Scroll position: {scrollPosition} width: {screenWidth}
+          </p>
+        </div>
         <div className="p-3 md:p-16">
           <Form />
         </div>
