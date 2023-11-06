@@ -106,6 +106,7 @@ export default function DashboardPage() {
                   <Card className="col-span-4">
                     <CardHeader>
                       <CardTitle>Overview</CardTitle>
+                      <AlertDialogDash2 />
                     </CardHeader>
                     <CardContent className="pl-2">
                       <RadarOverview data={surveyData} />
@@ -234,7 +235,7 @@ export default function DashboardPage() {
                 <Card className="col-span-4 hide-on-small">
                   <CardHeader>
                     <CardTitle>Overview</CardTitle>
-                    <AlertDialogDash2/>
+                    <AlertDialogDash2 />
                   </CardHeader>
                   <CardContent className="pl-2">
                     <RadarOverview data={surveyData} />
