@@ -13,8 +13,8 @@ import pb from '@/lib/pocketbase';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-// import { Button } from "@/components/ui/button"
-// import { CalendarDateRangePicker } from "@/features/dashboard/components/date-range-picker"
+// import { Button } from '@/components/ui/button';
+// import { CalendarDateRangePicker } from '@/features/dashboard/components/date-range-picker';
 // import { MainNav } from '@/features/dashboard/components/main-nav';
 // import { Search } from '@/features/dashboard/components/search';
 // import TeamSwitcher from '@/features/dashboard/components/team-switcher';
@@ -25,23 +25,31 @@ export default function DashboardPage() {
 
   const [cityData, setCityData] = useState<any | null>(null);
   const [statsData, setStatsData] = useState<any | null>(null);
+  const [surveyData, setSurveyData] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchCityRecord = async () => {
       try {
         const records = await pb.collection('citysort').getOne(`${id}`);
 
+        setCityData(records);
         if (records) {
-          const stats = await pb.collection(`${records.title}`).getFullList({
-            sort: '-created',
-          });
-          setCityData(records);
+          const stats = await pb
+            .collection('city_json')
+            .getOne(`${records?.json}`);
+
+          const survey = await pb.collection('survey_data').getOne(`${id}`);
+
+          if(survey) {
+            setSurveyData(survey);
+          } else {
+            console.log('No survey found for this city ID');
+          }
 
           if (stats) {
-            setStatsData(stats)
-            console.log('City data:', stats);
+            setStatsData(stats);
           } else {
-            console.log('No city data found for this city ID');
+            console.log('No stats found for this city ID');
           }
         } else {
           console.log(`No record found with title '${id}'`);
@@ -50,7 +58,6 @@ export default function DashboardPage() {
         console.error('Error fetching record:', error);
       }
     };
-
     fetchCityRecord();
   }, [id]);
 
@@ -68,13 +75,21 @@ export default function DashboardPage() {
           </div>
         </div> */}
         <div className="flex-1 space-y-4 p-8 pt-6">
-          {/* <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-            <div className="flex items-center space-x-2">
-              <CalendarDateRangePicker />
-              <Button>Download</Button>
-            </div>
-          </div> */}
+          <div className="flex items-center space-x-4">
+            <h2 className="text-3xl font-bold tracking-tight">
+              {cityData?.title
+                ? cityData.title.charAt(0).toUpperCase() +
+                  cityData.title.slice(1)
+                : ''}
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              {' '}
+              {cityData?.label
+                ? cityData.label.charAt(0).toUpperCase() +
+                  cityData.label.slice(1)
+                : ''}
+            </p>
+          </div>
           <Tabs defaultValue="overview" className="space-y-4">
             <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -194,10 +209,10 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">
-                      {cityData?.weather.temperature}℃
+                      {cityData?.weather?.temperature || ''}℃
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      {cityData?.weather.climate}
+                      {cityData?.weather?.climate}
                     </p>
                   </CardContent>
                 </Card>
@@ -208,7 +223,7 @@ export default function DashboardPage() {
                     <CardTitle>Overview</CardTitle>
                   </CardHeader>
                   <CardContent className="pl-2">
-                    <RadarOverview />
+                    <RadarOverview data={surveyData} />
                   </CardContent>
                 </Card>
                 <Card className="col-span-3">
@@ -219,7 +234,7 @@ export default function DashboardPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Attractions data={cityData?.attractions} />
+                    <Attractions data={statsData?.attractions} />
                   </CardContent>
                 </Card>
               </div>

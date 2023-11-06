@@ -9,70 +9,71 @@ import {
 } from 'recharts';
 
 
-const data = [
-  {
-    subject: 'Good Roads 🛣',
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: 'Good Education infra 🏫',
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: 'Good Hospitals 🏥',
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Clean Air 🎐',
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Job Opportunities 💼',
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Safe 🚓',
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: '24X7⚡',
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: '24X7 🚿',
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Fast internet 📶',
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+export function RadarOverview ({data}: any) {
+  const transformedData =  [
+    {
+      subject: 'Good Roads 🛣',
+      A: data?.roads,
+      B: (data?.total_records - data?.roads),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: 'Good Education infra 🏫',
+      A: data?.education,
+      B: (data?.total_records - data?.education),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: 'Good Hospitals 🏥',
+      A: data?.hospitals,
+      B: (data?.total_records - data?.hospitals),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: 'Clean Air 🎐',
+      A: data?.air,
+      B: (data?.total_records - data?.air),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: 'Job Opportunities 💼',
+      A: data?.jobs,
+      B: (data?.total_records - data?.jobs),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: 'Safe 🚓',
+      A: data?.safe,
+      B: (data?.total_records - data?.safe),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: '24X7⚡',
+      A: data?.electricity,
+      B: (data?.total_records - data?.electricity),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: '24X7 🚿',
+      A: data?.water,
+      B: (data?.total_records - data?.water),
+      fullMark: data?.total_records,
+    },
+    {
+      subject: 'Fast internet 📶',
+      A: data?.internet,
+      B: (data?.total_records - data?.internet),
+      fullMark: data?.total_records,
+    },
+  ]
+  console.log(transformedData);
 
-export function RadarOverview () {
    return (
      <ResponsiveContainer width="100%" height={400}>
-       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={transformedData}>
          <PolarGrid />
          <PolarAngleAxis dataKey="subject" />
-         <PolarRadiusAxis angle={50} domain={[0, 200]} />
+         <PolarRadiusAxis angle={50} domain={[0, 15]} />
          <Radar
            name="Yes"
            dataKey="A"
