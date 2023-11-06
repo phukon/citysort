@@ -66,14 +66,14 @@ export function RadarOverview ({data}: any) {
       fullMark: data?.total_records,
     },
   ]
-  console.log(transformedData);
+  // console.log(transformedData);
 
    return (
      <ResponsiveContainer width="100%" height={400}>
        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={transformedData}>
          <PolarGrid />
          <PolarAngleAxis dataKey="subject" />
-         <PolarRadiusAxis angle={50} domain={[0, 15]} />
+         <PolarRadiusAxis angle={50} domain={[0, 7]} />
          <Radar
            name="Yes"
            dataKey="A"

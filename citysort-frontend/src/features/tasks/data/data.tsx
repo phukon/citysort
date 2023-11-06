@@ -56,28 +56,23 @@ export const labels = [
 export const statuses = [
   {
     value: 'tourist',
-    label: '🧳Tourist-ty',
-    // icon: QuestionMarkCircledIcon,
+    label: '🧳 Tourist-ty',
   },
   {
     value: 'rh',
-    label: 'Rich/Hip🤑',
-    // icon: CircleIcon,
+    label: 'Rich/Hip 🤑',
   },
   {
     value: 'nature',
-    label: 'Nature🌳',
-    // icon: StopwatchIcon,
+    label: 'Nature 🌳',
   },
   {
     value: 'budget',
-    label: 'Budget🍜',
-    // icon: CheckCircledIcon,
+    label: 'Budget 🍜',
   },
   {
     value: 'clean',
-    label: 'Clean✨',
-    // icon: CrossCircledIcon,
+    label: 'Clean ✨',
   },
   {
     value: 'kanpur',
@@ -85,7 +80,7 @@ export const statuses = [
   },
   {
     value: 'historic',
-    label: 'Historic Sites 🏛️',
+    label: 'Historic ⏳',
   },
   {
     value: 'nightlife',
@@ -107,7 +102,116 @@ export const statuses = [
     value: 'foodie',
     label: 'Foodie Paradise 🍽️',
   },
+  {
+    value: 'historic',
+    label: 'Historic ⏳',
+  },
+  {
+    value: 'nightlife',
+    label: 'Nightlife 🌃',
+  },
+  {
+    value: 'nature',
+    label: 'Nature 🌿',
+  },
+  {
+    value: 'budget',
+    label: 'Budget 💰',
+  },
+  {
+    value: 'clean',
+    label: 'Clean 🧹',
+  },
+  {
+    value: 'tourist',
+    label: 'Tourist 📸',
+  },
+  {
+    value: 'beach',
+    label: 'Beach 🏖️',
+  },
+  {
+    value: 'historical',
+    label: 'Historical 🏰',
+  },
+  {
+    value: 'foodie',
+    label: 'Foodie 🍲',
+  },
+  {
+    value: 'temples',
+    label: 'Temples 🕍',
+  },
+  {
+    value: 'seafood',
+    label: 'Seafood 🦞',
+  },
+  {
+    value: 'orange',
+    label: 'Orange 🍊',
+  },
+  {
+    value: 'culture',
+    label: 'Culture 🎭',
+  },
+  {
+    value: 'spiritual',
+    label: 'Spiritual 🙏',
+  },
+  {
+    value: 'riverside',
+    label: 'Riverside 🏞️',
+  },
+  {
+    value: 'mountains',
+    label: 'Mountains ⛰️',
+  },
+  {
+    value: 'pilgrimage',
+    label: 'Pilgrimage 🕍',
+  },
+  {
+    value: 'industrial',
+    label: 'Industrial 🏭',
+  },
+  {
+    value: 'lakes',
+    label: 'Lakes 🏞️',
+  },
+  {
+    value: 'lakeside',
+    label: 'Lakeside 🏞️',
+  },
+  {
+    value: 'golden-temple',
+    label: 'Golden Temple🛐',
+  },
+  {
+    value: 'political',
+    label: 'Political 🏛️',
+  },
+  {
+    value: 'monuments',
+    label: 'Monuments 🏛️',
+  },
+  {
+    value: 'wineries',
+    label: 'Wineries 🍇',
+  },
+  {
+    value: 'business',
+    label: 'Business 💼',
+  },
+  {
+    value: 'martial',
+    label: 'Martial ⚔️',
+  },
+  {
+    value: 'expensive',
+    label: 'Expensive 💰',
+  }
 ];
+
 
 export const priorities = [
   {

@@ -1,14 +1,10 @@
-// import { promises as fs } from 'fs';
-// import path from 'path';
 import { z } from 'zod';
 import { useEffect, useState } from 'react';
 import { columns } from './components/columns';
 import { DataTable } from './components/data-table';
 // import { UserNav } from './components/user-nav';
 import { taskSchema } from './data/schema';
-// import im1 from '@/assets/im1.jpg';
 import Form from '../form/Form';
-import pb from '@/lib/pocketbase';
 
 type Task = {
   collectionId: string;
@@ -27,27 +23,33 @@ type Task = {
   json: string;
 };
 
+const url = import.meta.env.VITE_URL;
+
 async function getData(): Promise<Task[]> {
-  console.log('getData');
-  const data = await pb.collection('citysort').getFullList({
-    sort: 'created',
-    page: 1,
-    perPage: 1,
-    skipTotal: true,
-  });
-  console.log(data);
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    console.log(data);
 
-  const capitalizedData = data.map((task) => {
-    const capitalizedTitle =
-      task.title.charAt(0).toUpperCase() + task.title.slice(1);
+    const capitalizedData = data.items.map((task: Task) => {
+      const capitalizedTitle =
+        task.title.charAt(0).toUpperCase() + task.title.slice(1);
 
-    return {
-      ...task,
-      title: capitalizedTitle,
-    };
-  });
+      return {
+        ...task,
+        title: capitalizedTitle,
+      };
+    });
 
-  return z.array(taskSchema).parse(capitalizedData);
+    return z.array(taskSchema).parse(capitalizedData);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching tasks:', error);
+    return [];
+  }
 }
 
 export default function TaskPage() {

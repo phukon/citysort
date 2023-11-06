@@ -12,6 +12,7 @@ import { RadarOverview } from './components/RadarOverview';
 import pb from '@/lib/pocketbase';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { set } from 'date-fns';
 
 // import { Button } from '@/components/ui/button';
 // import { CalendarDateRangePicker } from '@/features/dashboard/components/date-range-picker';
@@ -36,18 +37,18 @@ export default function DashboardPage() {
         if (records) {
           const stats = await pb
             .collection('city_json')
-            .getOne(`${records?.json}`);
+            .getOne(`${records.json}`);
 
           const survey = await pb.collection('survey_data').getOne(`${id}`);
 
-          if(survey) {
-            setSurveyData(survey);
-          } else {
-            console.log('No survey found for this city ID');
-          }
-
           if (stats) {
             setStatsData(stats);
+          } else {
+            console.log('No stats found for this city ID');
+          }
+
+          if (survey) {
+            setSurveyData(survey);
           } else {
             console.log('No stats found for this city ID');
           }
@@ -60,6 +61,7 @@ export default function DashboardPage() {
     };
     fetchCityRecord();
   }, [id]);
+
 
   return (
     <>
@@ -99,6 +101,16 @@ export default function DashboardPage() {
             </TabsList>
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div className="md:hidden">
+                  <Card className="col-span-4">
+                    <CardHeader>
+                      <CardTitle>Overview</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pl-2">
+                      <RadarOverview data={surveyData} />
+                    </CardContent>
+                  </Card>
+                </div>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
@@ -209,7 +221,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">
-                      {cityData?.weather?.temperature || ''}℃
+                      {statsData?.weather?.temperature || ''}℃
                     </div>
                     <p className="text-xs text-muted-foreground">
                       {cityData?.weather?.climate}
@@ -218,7 +230,7 @@ export default function DashboardPage() {
                 </Card>
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <Card className="col-span-4">
+                <Card className="col-span-4 hide-on-small">
                   <CardHeader>
                     <CardTitle>Overview</CardTitle>
                   </CardHeader>
