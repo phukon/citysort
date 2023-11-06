@@ -6,8 +6,7 @@ export const notify = () =>
     position: 'bottom-center',
 
     // Styling
-    style: {},
-    className: 'bg-blue-500 text-white',
+    style: { background: '#4299e1', color: '#fff' },
 
     // Custom Icon
     // icon: '👏',
@@ -26,18 +25,13 @@ export const notify = () =>
   });
 
 export const guide = () =>
-  toast.success('Scroll down to find the form!', {
+  toast('Scroll down to find the form!', {
     duration: 3000,
     position: 'top-center',
 
     // Styling
-    style: {},
-    className: 'bg-blue-500 text-white',
+    style: {background: '#4299e1', color: '#fff'},
 
-    // Custom Icon
-    // icon: '👏',
-
-    // Change colors of success/error/loading icon
     iconTheme: {
       primary: '#000',
       secondary: '#fff',

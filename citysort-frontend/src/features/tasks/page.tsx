@@ -81,7 +81,7 @@ export default function TaskPage() {
       setTimeout(() => {
         console.log('Resuming handleScroll events!');
         setCanToast(true);
-      }, 1000);
+      }, 1000 * 30 * 3);
     }
 
     // if (canGuide && scrollPosition > 406 && screenWidth > 300)
@@ -114,7 +114,7 @@ export default function TaskPage() {
   }
 
   useEffect(() => {
-    setTimeout(() => { guide();}, 3000)
+    setTimeout(() => { guide();}, 1500)
   }, []);
 
   return (
