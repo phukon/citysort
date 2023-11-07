@@ -35,7 +35,7 @@ export const Landing = () => {
             <div className="inline-flex rounded-md shadow">
               <Button onClick={handleStart}>Get started</Button>
             </div>
-            <div className="ml-3 inline-flex">
+            {/* <div className="ml-3 inline-flex">
               <a
                 href="https://github.com/phukon"
                 target="_blank"
@@ -60,7 +60,7 @@ export const Landing = () => {
                   Github
                 </Button>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
