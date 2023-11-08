@@ -1,5 +1,3 @@
-# CitySort
-
 ![pocketbase](https://img.shields.io/badge/PocketBase-B8DBE4?style=for-the-badge&logo=PocketBase&logoColor=white)
 ![tailwindcss](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
@@ -7,7 +5,22 @@
 ![vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![aws](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
-A live index of the best cities to live and work in India, based on crowdsourced data. Inspired by a viral tweet that initiated discussions about city ratings, this platform aims to collect and present insights from the community, enabling individuals to share their perspectives and experiences about different cities in India.
+<p align="center">
+  <h1 align="center">CitySort</h1>
+</p>
+<p align="center">
+  <p align="center">
+     A live index of the best cities to live and work in India, based on crowdsourced data.
+    <br />
+    <a href="https://citysort.vercel.app">Website</a>
+    ·
+    <a href="https://github.com/phukon/citysort/issues">Issues</a>
+  </p>
+    <img src="https://github.com/phukon/citysort/assets/60285613/2b3f8f79-8845-49fe-85f5-8112ef06e637" alt="b25464c1-41fb-464d-a44e-5dd70245b70b">
+</p>
+
+
+
 
 ## Background
 
