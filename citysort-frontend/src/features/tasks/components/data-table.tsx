@@ -78,6 +78,7 @@ export function DataTable<TData extends MyData, TValue>({
 
   return (
     <div className="space-y-4">
+      <div className='flex justify-center text-lg font-bold'>You can tap on the entries!</div>
       <DataTableToolbar table={table} />
       <div className="rounded-md border-2">
         <Table>

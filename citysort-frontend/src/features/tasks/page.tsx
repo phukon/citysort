@@ -5,7 +5,7 @@ import { DataTable } from './components/data-table';
 // import { UserNav } from './components/user-nav';
 import { taskSchema } from './data/schema';
 import Form from '../form/Form';
-import { notify, guide } from './components/formInfo';
+import { notify, tap, guide } from './components/formInfo';
 
 type Task = {
   collectionId: string;
@@ -114,7 +114,12 @@ export default function TaskPage() {
   }
 
   useEffect(() => {
-    setTimeout(() => { guide();}, 1500)
+    setTimeout(() => {
+      guide();
+    }, 1500);
+    setTimeout(() => {
+      tap();
+    }, 6000);
   }, []);
 
   return (

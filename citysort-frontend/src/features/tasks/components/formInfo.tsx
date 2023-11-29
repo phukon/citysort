@@ -43,3 +43,23 @@ export const guide = () =>
       'aria-live': 'polite',
     },
   });
+
+  export const tap = () =>
+    toast('Tap on an entry to visit the dashboard. 👇🏽', {
+      duration: 3500,
+      position: 'top-right',
+
+      // Styling
+      style: { background: '#139e59', color: '#fff' },
+
+      iconTheme: {
+        primary: '#000',
+        secondary: '#fff',
+      },
+
+      // Aria
+      ariaProps: {
+        role: 'status',
+        'aria-live': 'polite',
+      },
+    });
