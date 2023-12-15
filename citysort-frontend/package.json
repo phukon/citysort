@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "author": "Riki Phukon",
-  "license": " AGPL-3.0",
+  "license": "mit",
   "repository": "phukon/citysort",
   "scripts": {
     "dev": "vite",
