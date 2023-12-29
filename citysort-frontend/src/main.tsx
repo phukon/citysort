@@ -4,7 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import Int from './Int.jsx';
 
-import { PostHogProvider } from 'posthog-js/react';
+// import { PostHogProvider } from 'posthog-js/react';
 
 const options = {
   api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
@@ -12,12 +12,12 @@ const options = {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <PostHogProvider
+    {/* <PostHogProvider
       apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
       options={options}
-    >
+    > */}
       <App />
-    </PostHogProvider>
+    {/* </PostHogProvider> */}
     <Int />
   </React.StrictMode>
 );
